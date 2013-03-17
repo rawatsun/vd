@@ -17,7 +17,7 @@
                         </div>
 
                         <a href="#" class="button-class" >Blogs</a>
-                        <a href="#" class="button-class" >Create Page</a>
+                        <a href="#" onclick="loadwebform()" class="button-class"   >Create Page</a>
                         <a href="#" class="button-class" >Choose templates</a>
                         <a href="#" class="button-class" >Comments </a>
                         <a href="#" class="button-class" >Feedbacks  </a>

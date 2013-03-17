@@ -87,11 +87,12 @@ border: 1px solid green;
 }
 .contentpannel {
      height: 900px;
-     float: left;border: 1px solid green;
+     float: left;
     width: 66%;
     margin-left: 10px;
 
     margin-top: 2px;
+    text-align: center;
  
 }
 .rightpannel {

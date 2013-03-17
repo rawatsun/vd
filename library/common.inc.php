@@ -1,7 +1,7 @@
 <?php
 define('DOC_ROOT',$_SERVER['DOCUMENT_ROOT']);
-define('SITE_ROOT',DOC_ROOT.'/vd-up1/trunk/visiondart/');
-define('SITE_PATH','http://'.$_SERVER['HTTP_HOST'].'/vd-up1/trunk/visiondart/');
+define('SITE_ROOT',DOC_ROOT.'/vd/trunk/');
+define('SITE_PATH','http://'.$_SERVER['HTTP_HOST'].'/vd/trunk/');
 define('IMAGE_PATH',SITE_PATH.'images/');
 define('CSS_PATH',SITE_PATH.'css/');
 define('JS_PATH',SITE_PATH.'js/');
