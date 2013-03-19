@@ -47,6 +47,8 @@ body {
     font-family:verdana;
    
     color: #FFF;
+
+    background-color: #eee;
     position: relative;
 }
 
@@ -57,6 +59,7 @@ body {
     overflow: hidden;
     margin: 0px;
     padding: 0px;
+    height: auto;
     top: 0;
     left: 0;
     position: absolute;
@@ -72,21 +75,21 @@ body {
 
 .leftpannel{
     height: 900px;
-border: 1px solid green;
+    border: 1px solid gray;
     width: 11%;
     margin-left: 0px;
-
     box-shadow: 5px 5px 5px #888888;
-
     margin-top: 2px;
-
      background-color: #eee;
     left: 0px;
     float: left;
 
 }
+.loader{
+    margin-top:110px;
+}
 .contentpannel {
-     height: 900px;
+     height: 100%;
      float: left;
     width: 66%;
     margin-left: 10px;
@@ -98,7 +101,7 @@ border: 1px solid green;
 .rightpannel {
      height: 900px;
      float: right;
-     border: 1px solid green;
+     border: 1px solid gray;
     width: 20%;
     margin-left: 0px;
     margin-top: 2px;

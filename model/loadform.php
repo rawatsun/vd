@@ -75,7 +75,12 @@ h1
 	text-indent:-8000px;
 	
 }
+.form_description{
+text-align: center;
+color:gray;
+font-style: italic;
 
+}
 
 form ul
 {
@@ -199,6 +204,7 @@ input.text
 	padding:2px 0;
 }
 
+
 textarea.textarea
 {
 		color:#333;
@@ -207,6 +213,10 @@ textarea.textarea
 	width:99%;
 }
 
+.about{
+	height: 100px;
+
+}
 
 *:first-child+html select.select[class]
 {
@@ -274,13 +284,15 @@ input[type=submit]{
 	border-radius:4px;
 	background-color:#800080;
 	color:white;
-	padding:5px;
+
+	padding:8px;
 font-style:italic;
 
 
 }
 input[type=submit]:hover{
 	background-color:#A828A8;
+	cursor: pointer;
 	
 	
 
@@ -303,7 +315,7 @@ input[type=submit]:hover{
 				<li id="li_2" >
 		<label class="description" for="element_2" style="float:left">About us  </label>
 		<div>
-			<input id="element_2" name="element_2" class="element text large" type="text" maxlength="255" value=""/> 
+			<textarea id="element_3" name="element_2" class="element textarea medium"></textarea> 
 		</div> 
 		</li>		<li id="li_3" >
 		<label class="description" for="element_3">Paragraph </label>
@@ -313,23 +325,23 @@ input[type=submit]:hover{
 		</li>		<li id="li_4" >
 		<label class="description" for="element_4">service1 </label>
 		<div>
-			<input id="element_4" name="element_4" class="element text large" type="text" maxlength="255" value=""/> 
+			<textarea id="element_3" name="element_4" class="element textarea small"></textarea> 
 		</div><p class="guidelines" id="guide_4"><small>Enter you services here </small></p> 
 		</li>		<li id="li_6" >
 		<label class="description" for="element_5">service2 </label>
 		<div>
-			<input id="element_6" name="element_5" class="element text large" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_6"><small>Enter you services here </small></p> 
+			<textarea id="element_3" name="element_5" class="element textarea small"></textarea> 
+		</div>
 		</li>		<li id="li_5" >
 		<label class="description" for="element_6">service3 </label>
 		<div>
-			<input id="element_5" name="element_6" class="element text large" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_5"><small>Enter you services here </small></p> 
+			<textarea id="element_3" name="element_6" class="element textarea small"></textarea> 
+		</div> 
 		</li>		<li id="li_7" >
 		<label class="description" for="element_7">service4 </label>
 		<div>
-			<input id="element_7" name="element_7" class="element text large" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_7"><small>Enter you services here </small></p> 
+			<textarea id="element_3" name="element_7" class="element textarea small"></textarea> 
+		</div>
 		</li>		<li id="li_8" >
 		<label class="description" for="element_8">Email </label>
 		<div>
