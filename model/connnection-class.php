@@ -42,7 +42,12 @@
 			//echo 'insert  into  $this->_tableName($str) values($str2)';
 			$this->query=$this->con -> prepare("insert  into  $this->_tableName($str) values($str2)");
 			$this->query->execute();
-
+			if ($this->query->rowCount()>0){
+				return "registered";
+			}
+			else{
+				return "insert  into  $this->_tableName($str) values($str2)";
+			}
 			}
 		}
 

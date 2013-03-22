@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'vd/trunk/library/common.inc.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/vd/trunk/library/common.inc.php');
 
 if(isset($_GET['controller']) && !empty($_GET['controller'])){
       $controller =$_GET['controller'];

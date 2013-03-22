@@ -6,7 +6,7 @@ $(document).ready(function() {
     var topvalue = 0;
     $('#p1,#p2').hide();
 
-    $("#user_name,#password").mouseover(function() {
+    $("#user_name,#password").click(function() {
         if ($(this).val() == "Invalid") {
             $(this).css("background-color", "white");
             $(this).css({
@@ -17,7 +17,18 @@ $(document).ready(function() {
 
     });
 
-    $("#contact_suggestion,#contact_email,#contact_name").mouseover(function() {
+
+    $("#reg_user_name,#reg_password,#reg_confirm_password,#reg_first_name,#reg_last_name,#reg_email,#reg_address,#reg_phone,#reg_age,#reg_dob").click( function(){
+  if($(this).val() == "Invalid")  {
+  $(this).css("background-color","white");
+  $(this).css({"color":"black"});
+  $(this).val("");
+  }
+
+  });
+
+
+    $("#contact_suggestion,#contact_email,#contact_name").click(function() {
         if ($(this).val() == "Invalid") {
             $(this).css("background-color", "white");
             $(this).css({
@@ -191,10 +202,88 @@ function register() {
     reg_phone = $("#reg_phone").val();
 
     reg_dob = $("#reg_dob").val();
-
+    err=0;
     reg_age = $("#reg_age").val();
     reg_gender = $("#reg_gender").val();
     reg_country = $("#reg_country").val();
+
+
+                reg_exp = "^[A-Za-z][A-Za-z0-9]+$";
+                  if(reg_user_name == "" || !(reg_user_name.match(reg_exp))) {
+                     err=1;
+                        $("#reg_user_name").css("background-color","#FF0000");
+                        $("#reg_user_name").val("Invalid").css({"opacity":"0.5","color":"white"});
+                      }
+               if(reg_password == "" || reg_password == null) {
+                          err=1;
+                        $("#reg_password").css("background-color","#FF0000");
+                        $("#reg_password").val("Invalid").css({"opacity":"0.5","color":"white"});
+                      } 
+               if(reg_confirm_password == "" || reg_confirm_password != reg_password) {
+                   err=1;
+                $("#reg_confirm_password").css("background-color","#FF0000");
+                $("#reg_confirm_password").val("Invalid").css({"opacity":"0.5","color":"white"});
+               }   
+               reg_exp = "^[A-Za-z]+$";
+               if(reg_first_name == "" || !(reg_first_name.match(reg_exp))) {
+                   err=1;
+                $("#reg_first_name").css("background-color","#FF0000");
+                $("#reg_first_name").val("Invalid").css({"opacity":"0.5","color":"white"});
+               }
+               reg_exp = "^[A-Za-z]+$";
+               if(reg_last_name == "" || !(reg_last_name.match(reg_exp))) {
+                   err=1;
+                $("#reg_last_name").css("background-color","#FF0000");
+                $("#reg_last_name").val("Invalid").css({"opacity":"0.5","color":"white"});
+               }
+               if(reg_email == "")    {  
+                err=1;
+                 $("#reg_email").css("background-color","#FF0000");
+                   $("#reg_email").val("Invalid").css({"opacity":"0.5","color":"white"});
+                     
+            }
+               //alert(reg_email);
+                reg_exp_email = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)* @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                    if (reg_email.match(reg_exp_email)) { 
+                      err=1;
+                       $("#reg_email").css("background-color","#FF0000");
+                       $("#reg_email").val("Invalid").css({"opacity":"0.5","color":"white"});
+                    }   
+                    
+                    if(reg_address == "")    {  
+                        err=1;
+                      $("#reg_address").css("background-color","#FF0000");
+                       $("#reg_address").val("Invalid").css({"opacity":"0.5","color":"white"});          
+                 }   
+                
+                    if(reg_dob == "")    { 
+                    err=1;  
+                     $("#reg_dob").css("background-color","#FF0000");
+                       $("#reg_dob").val("Invalid").css({"opacity":"0.5","color":"white"});
+                         
+                 }
+                reg_exp="^[0-9]+$";
+                if(reg_phone == "" || !(reg_phone.match(reg_exp))) {
+                    err=1;
+                  $("#reg_phone").css("background-color","#FF0000");
+                  $("#reg_phone").val("Invalid").css({"opacity":"0.5","color":"white"});
+                 }
+                
+                reg_exp="^[0-9]+$";
+                if(reg_age == "" || !(reg_age.match(reg_exp)) ||reg_age > 90) {
+                    err=1;
+                  $("#reg_age").css("background-color","#FF0000");
+                  $("#reg_age").val("Invalid").css({"opacity":"0.5","color":"white"});
+                 }
+
+alert(err);
+if(err==1)
+{
+
+
+}else{
+
+
 
     $.ajax({
         type: "GET",
@@ -226,36 +315,7 @@ function register() {
 },
         error: function() {}
     });
-
+}
 }
 
-function validatecontact() {
 
-    contact_name = $('#contact_name').val();
-    contact_suggestion = $('#contact_suggestion').val();
-    contact_email = $('#contact_email').val();
-
-    if (contact_name == "" || contact_name == null) {
-        $('#contact_name').css("background-color", "#FF0000").val("Invalid").css({
-            "opacity": "0.5",
-            "color": "white"
-        });;
-
-    }
-    if (contact_suggestion == "" || contact_suggestion == null) {
-        $('#contact_suggestion').css("background-color", "#FF0000").val("Invalid").css({
-            "opacity": "0.5",
-            "color": "white"
-        });;
-
-    } else {
-}
-    if (contact_email == "" || contact_email == null) {
-        $('#contact_email').css("background-color", "#FF0000").val("Invalid").css({
-            "opacity": "0.5",
-            "color": "white"
-        });;
-    } else {
-}
-
-}

@@ -1,54 +1,59 @@
 <?php 
 
+if (isset($_REQUEST['element_0'])){
+$name =  $_REQUEST['element_0'];
+}
+if (isset($_REQUEST['element_1'])){
+$about =  $_REQUEST['element_1'];
+}
+
+
 if (isset($_REQUEST['element_2'])){
-$about =  $_REQUEST['element_2'];
+$work =  $_REQUEST['element_2'];
 }
 
 if (isset($_REQUEST['element_3'])){
-$para =  $_REQUEST['element_3'];
+$service1 =  $_REQUEST['element_3'];
 }
 
 if (isset($_REQUEST['element_4'])){
-$service1 =  $_REQUEST['element_4'];
+$service2 =  $_REQUEST['element_4'];
 }
 
 if (isset($_REQUEST['element_5'])){
-$service2 =  $_REQUEST['element_5'];
+$service3 =  $_REQUEST['element_5'];
 }
 
 if (isset($_REQUEST['element_6'])){
-$service3 =  $_REQUEST['element_6'];
+$service4 =  $_REQUEST['element_6'];
 }
-
 if (isset($_REQUEST['element_7'])){
-$service4 =  $_REQUEST['element_7'];
+$email =  $_REQUEST['element_7'];
 }
 if (isset($_REQUEST['element_8'])){
-$email =  $_REQUEST['element_8'];
-}
-if (isset($_REQUEST['element_9'])){
-$website =  $_REQUEST['element_9'];
+$website =  $_REQUEST['element_8'];
 }
 
-$con =  mysql_connect("localhost","root","");
-mysql_select_db("visiondart");
+
+if (isset($_REQUEST['element_9'])){
+$phone =  $_REQUEST['element_9'];
+}
+if (isset($_REQUEST['element_10'])){
+$contact =  $_REQUEST['element_10'];
+}
+
+
+
 
 ?>
-</style>
-<?php 
+<?php
 
 
-$str= <<< test
-
-
-
-
+ $str= <<< test
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>index</title>
-
 <style>
-
 body {
 	margin: 0;
 	padding: 0;
@@ -109,7 +114,7 @@ strong {
 	position:fixed;
 	top:0;
 	left:0;
-	opacity:0.7;
+	opacity:0.7;-moz-opacity:0.7;
 }
 
 #header h1 {
@@ -176,7 +181,7 @@ p{
 </head>
 <body>
 <div id="header">
-	<h1><a href="#">bugs life </a></h1>
+	<h1><a href="#"> $name </a></h1>
 </div>
 
 <div id="content">
@@ -192,19 +197,15 @@ p{
 			<h2>Our Services  </h2>
 			<p>  $service1   </p>	
 			<hr>
-			<p>  $service1</p>	
+			<p>  $service2</p>	
 			<hr>
 			
-			<p> $service1 </p>	
+			<p> $service3 </p>	
 			<hr>
 			
-			<p> $service1 </p>	
+			<p> $service4 </p>	
 			<hr>
-			
-			
 		</div>
-		
-		
 			<div class="post">
 			<h2>Email Adddress</h2>
 			<p>$email</p>	
@@ -215,6 +216,19 @@ p{
 			<p>$website</p>	
 			
 		</div>
+
+<div class="post">
+			<h2>Phone Number</h2>
+			<p>$phone</p>	
+			
+		</div>
+		<div class="post">
+			<h2>Contact Address </h2>
+			<p>$contact</p>	
+			
+		</div>
+
+
 		</div>
 </div>
 <div id="footer">
@@ -222,11 +236,22 @@ p{
 </div>
 </body>
 </html>
-
-
-
 test;
-mysql_query("insert into webview values('$str')");
+
+$db = new PDO('mysql:dbname=visiondart;host=localhost', 'root', 'root');
+$stmt = $db->prepare('INSERT into user_website  VALUES (?,?,?)');
+$user_id = 2 ;
+$template_id =2;
+ 
+$stmt->bindParam(1, $user_id,PDO::PARAM_INT);
+
+$stmt->bindParam(2, $str, PDO::PARAM_LOB);
+
+$stmt->bindParam(3, $template_id,PDO::PARAM_INT);
+
+$db->beginTransaction();
+$stmt->execute();
+$db->commit();
 header("Location: site.php");
 
 /*

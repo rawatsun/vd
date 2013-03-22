@@ -4,7 +4,7 @@
 
 <?php
 $dbconnection = new DbConnection();
-$dbconnection -> connectToDatabse("localhost","visiondart","root","");
+$dbconnection -> connectToDatabse("localhost","visiondart","root","root");
 
 if (isset($_REQUEST['codetorun'])){
 

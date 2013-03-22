@@ -1,5 +1,5 @@
 <?php 
-$con =  mysql_connect("localhost","root","");
+$con =  mysql_connect("localhost","root","root");
 mysql_select_db("visiondart");
 
 ?>
@@ -19,7 +19,7 @@ $str= '
 
 #form_container
 {
-	background:#fff;
+	background:#eee;
 	margin:0 auto;
 	text-align:left;
 	width:640px;
