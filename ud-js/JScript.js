@@ -1,7 +1,12 @@
 ﻿    $(document).ready(function () {
     $(".loader").hide();
-    $(".cratepage").css({"display":"none"});
-
+  
+    $(".page1").css({"display":"none"});
+    $(".editprofile1").css({"display":"none"});
+    $(".newprofile1").css({"display":"none"});
+    $(".home1").css({"display":"block"});
+           
+    home();
 
       
     $(".button-class-div").hide();
@@ -19,10 +24,12 @@
          
        
     });
- $(".homeclick").click(function (){
+ $(".newprofile").click(function (){
+   $(".page1").css({"display":"none"});
+    $(".editprofile1").css({"display":"none"});
+    $(".newprofile1").css({"display":"block"});
+    $(".home1").css({"display":"none"});
    
-        $(".home").fadeOut("fast").fadeIn("slow");
-        $(".page").fadeOut("fast");
       
     });
 
@@ -31,10 +38,68 @@
 
 
 
+
+
+
+ $(".homeclick").click(function (){
+   $(".page1").css({"display":"none"});
+    $(".editprofile1").css({"display":"none"});
+    $(".newprofile1").css({"display":"none"});
+    $(".home1").css({"display":"block"});
+   
+      
+    });
+
+
+ $(".editprofile").click(function (){
+   $(".page1").css({"display":"none"});
+    $(".editprofile1").css({"display":"block"});
+    $(".newprofile1").css({"display":"none"});
+    $(".home1").css({"display":"none"});
+   
+      
     });
 
 
 
+
+
+ $(".createpage").click(function (){
+   $(".page1").css({"display":"block"});
+    $(".editprofile1").css({"display":"none"});
+    $(".newprofile1").css({"display":"none"});
+    $(".home1").css({"display":"none"});
+   
+      
+    });
+
+    });
+
+
+
+
+ function createpage()
+     {
+alert();
+        $.ajax({
+            type: "GET",
+            url: 'ud-model/createprocess.php',
+            data: "",
+            beforeSend: function() {
+
+    $(".loader").show();
+             },
+            success: function(data) {
+
+                alert("Your page has bee created Successfully");
+                $(".loader").hide();
+            },
+
+            complete: function() {
+            },
+            error: function() {}
+        });
+    }
 
 
  function home()
@@ -50,8 +115,8 @@
              },
             success: function(data) {
 
-    $(".loader").hide();
-               $('.contentpannel .home').html(data); 
+                $(".loader").hide();
+               $('.contentpannel .home1').html(data); 
             },
 
             complete: function() {
@@ -60,55 +125,59 @@
         });
     }
 
+function d(){
+
+}
 /*---------------------------------------------------------function for display of profile------------------------*/
 
    function display()
-{  document.getElementById('enclosingdiv').style.display = "block"; 
+    {  
+
        $.ajax({
             type: "POST",
             url: 'ud-model/index.php',
-            data: "codetorun=0",
+            data: "codetorun=1",
             beforeSend: function() {
 },   
             success: function(data) {
-               $('.contentpannel #mydiv').html(data);
+              
+   
+               $('.contentpannel .newprofile1').html(data);
                
    },
 }) 
 } 
 
-    function edit()
-{
- document.getElementById('enclosingdiv').style.display = "none";
- document.getElementById('newdiv').style.display = "block";
-} 
-    
+     
     /*---------------------------------------------------------function for update of profile------------------------*/
     
 function editProfile()
 {
-    edit();
-    set_first_name = $("#set_first_name").val();
-    set_last_name = $("#set_last_name").val();
-    set_email = $("#set_email").val();
-    set_address = $("#set_address").val();
-    set_phone = $("#set_phone").val();
-    set_dob = $("#set_dob").val();
-    set_country = $("#set_country").val();
+
+
+
+
+    element_1 = $("#element_1").val();
+    element_2 = $("#element_2").val();
+    element_3 = $("#element_3").val();
+    element_4 = $("#element_4").val();
+    element_5 = $("#element_5").val();
+    element_6 = $("#element_6").val();
+    element_7 = $("#element_7").val();
   
        $.ajax({
             type: "GET",
-            url: 'ud-model/index.php',
-            data: "codetorun=editprofile&set_first_name=" + set_first_name + 
-            "&set_last_name=" + set_last_name + "&set_email=" + set_email + 
-            "&set_address=" + set_address + "&set_phone=" + set_phone + "&set_dob=" +
-             set_dob + "&set_country=" + set_country + "",
+            url: 'ud-model/editprofile.php',
+            data: "element_1=" + element_1 + 
+            "&element_2=" + element_2 + "&element_3=" + element_3 + 
+            "&element_4=" + element_4 + "&element_5=" + element_5 + "&element_6=" +
+             element_6 + "&element_7=" + element_7 + "",
 
             beforeSend: function() {
 },   
             success: function(data) {
                 alert(data);
-                        if($.trim(data) == "updated")
+                        if($.trim(data) == "1")
                             {
                             alert ("Successfully Updated");
                             }

@@ -1,6 +1,6 @@
 <dt>CONTACT US</dt>
 
-        <dd>
+        <dd class="contact1">
             <div class=" val">
                 <label class="label1">Name <input id="contact_name" type=
                 "text" /></label> <label class="label1">Email Address

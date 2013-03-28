@@ -24,6 +24,8 @@
 
 	function insertIntoTable($_tableName,$arrayofcolumninsert) 
 		{
+		$this->_tableName=$_tableName;
+
 			$str="";
 			$str2="";
 			$keys="";
@@ -54,6 +56,7 @@
 function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
 		{
 
+		$this->_tableName=$_tableName;
 			$and="and";
 			$str="";
 			$orderby="";
@@ -117,6 +120,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 
 		function selectFromTable ( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
 		{
+		$this->_tableName=$_tableName;
 
 			$and="and";
 			$str="";
@@ -165,7 +169,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 			$this->query->execute();
 			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
 			if ($row=$this->query->fetch()) {
-				return $row['user_name']; 
+				return $row[$arrayofcolumn]; 
 			}
 			else
 			{

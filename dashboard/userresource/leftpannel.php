@@ -9,14 +9,13 @@
                         <div class="button-class-div">
                     <a href="#" class="button-class1 " id="button-class1" style="background-color:gray; color:white" >Profile Management </a>
                     
-                        <a href="#" class="button-class1 newprofile" id="button-class1"id="button-class1">New Profile</a>
+                        <a href="#" class="button-class1 newprofile" id="button-class1" onclick="display()" >New Profile</a>
                         <a href="#" class="button-class1 editprofile" id="button-class1" onclick="edit()">Edit Profile</a>  
                         <a href="#" class="button-class1 deleteprofile" id="button-class1">Delete Profile</a>
-                        <a href="#" class="button-class1 updateprofile" id="button-class1">Update Profile</a>  
-
+                  
                         </div>
 
-                        <a href="#" class="button-class blogs" >Blogs</a>
+                        <a href="#" class="button-class blogs" oclick="display()">Blogs</a>
                         <a href="#" class="button-class createpage"   >Create Page</a>
                         <a href="#" class="button-class template" >Choose templates</a>
                         <a href="#" class="button-class comments" >Comments </a>

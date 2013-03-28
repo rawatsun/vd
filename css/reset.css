@@ -952,3 +952,13 @@ h1 {
 }
          
 }
+.strength{
+        width: 20px;
+        overflow: hidden;
+        
+display: inline-block;      
+    }
+    .imgps{
+        height: 13px;
+
+    }

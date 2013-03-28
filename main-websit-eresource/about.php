@@ -1,6 +1,6 @@
  <dt>ABOUT US</dt>
 
-        <dd>
+        <dd class="about1">
             <div class="home">
                 <div class="about">
                 <h1>Build Your Own Online Community</h1>

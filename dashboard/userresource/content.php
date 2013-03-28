@@ -2,48 +2,49 @@
 
 <img src="./ud-images/loader.gif" class="loader">
 
-<div class="home">
+<div class="home1">
 
 </div>
 
 
-<div class="profile">
+<div class="profile1">
 
 </div>
 
 
-<div class="newprofile">
+<div class="newprofile1">
 
 </div>
 
-<div class="editprofile">
+<div class="editprofile1">
+
+<?php include_once('./ud-edit/createpage.php');  ?>
+</div>
+
+<div class="deleteprofile1">
 
 </div>
 
-<div class="deleteprofile">
+<div class="choosetemplate1">
 
 </div>
 
-<div class="choosetemplate">
+<div class="page1">
+<?php include_once('./ud-createpage/createpage.php');  ?>
+</div>
+
+<div class="feedbacks1">
 
 </div>
 
-<div class="page">
-<?php include_once('./createpage/createpage.php');  ?>
-</div>
-
-<div class="feedbacks">
+<div class="stats1">
 
 </div>
 
-<div class="stats">
+<div class="mailsetting1">
 
 </div>
-
-<div class="mailsetting">
-
-</div>
-<div class="premium">
+<div class="premium1">
 
 </div>
 

@@ -1,6 +1,6 @@
  <dt>SERVICES</dt>
 
-        <dd> <div class="para"></div>
+        <dd class="services1"> <div class="para"></div>
 
             <div class="serve">
 

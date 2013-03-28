@@ -58,6 +58,7 @@ isset($_REQUEST['reg_age'])) {
 		
 		$arrayofregcolumn = array('user_id');
 		$arrayofregcolumnwhere = array('user_name'=>$reg_user_name);
+		
 
 		$arrayofcolumninsert = array('user_name' =>$reg_user_name, 'password' => $reg_password
 			, 'first_name' => $reg_first_name, 'last_name' => $reg_last_name, 'gender' => $reg_gender

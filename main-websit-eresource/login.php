@@ -1,11 +1,12 @@
 <dt>LOGIN</dt>
 
-   <dd>
+   <dd class="login1">
         <div class=" val">
             <label class="label1">UserName <input id="user_name" name="user_name" type=
             "text" /></label>
                     
-                    <label class="label1">Password <input id="password" name="password" type="text" />
+                    <label class="label1">Password <input class="loginc"
+                     id="password" name="password" type="text"  />
                       
                     </label>
                     <label class="label1" style="color:red"></label>

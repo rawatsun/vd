@@ -3,6 +3,57 @@ textval = 0;
 
 $(document).ready(function() {
 
+
+
+
+$('body , document').keyup(function(e){
+
+
+if(e.shiftKey && e.keyCode == 76 && e.altKey){
+    $('dd').filter(':nth-child(n+4)').hide();
+            $(".login1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+    }
+
+if(e.shiftKey && e.keyCode == 72 && e.altKey){
+
+    $('dd').filter(':nth-child(n+4)').hide();
+            $(".home1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+       
+    }
+
+    if(e.shiftKey && e.keyCode == 65 && e.altKey){
+          $('dd').filter(':nth-child(n+4)').hide();
+            $(".about1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+    }
+ if(e.shiftKey && e.keyCode == 67 && e.altKey){
+          $('dd').filter(':nth-child(n+4)').hide();
+            $(".contact1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+    }
+  if(e.shiftKey && e.keyCode == 83 && e. altKey){
+          $('dd').filter(':nth-child(n+4)').hide();
+            $(".services1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+    }
+
+if(e.shiftKey && e.keyCode == 82 && e.altKey){
+          $('dd').filter(':nth-child(n+4)').hide();
+            $(".register1").slideDown(200).fadeOut('fast').fadeIn('fast').siblings('dd').slideUp(200);
+ 
+    }
+    if( e.shiftKey && e.keyCode == 85 && e.altKey){
+$('body,html').animate({
+            scrollTop: 0
+        }, 1000);
+      
+    }
+
+
+});
+
     var topvalue = 0;
     $('#p1,#p2').hide();
 
@@ -319,3 +370,30 @@ if(err==1)
 }
 
 
+function check(){
+
+str = $('#reg_password').val();
+pat1= /(?=.*\d)(?=.*[a-z]).{6,9}/;
+
+pat2= /(?=.*\d)(?=.*[A-Z#]).{6,11}/;
+
+pat3= /(?=.*\d)(?=.*[A-Z])(?=.*[@!#]).{6,12}/;
+
+pat4= /(?=.*\d)(?=.*[A-Z])(?=.*[\\%._]).{6,13}/;
+
+$('.strength').css({width:"20px"},"fast");
+if (str.match(pat1))
+{
+  
+$('.strength').css({width:"80px"});
+}
+if(str.match(pat2)) { 
+$('.strength').css({width:"130px"});
+}
+if(str.match(pat3)) { 
+$('.strength').css({width:"170px"});
+}
+if(str.match(pat4)) { 
+$('.strength').css({width:"230px"});
+}
+}

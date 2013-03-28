@@ -1,6 +1,6 @@
 <dt>HOME</dt>
 
-        <dd>
+        <dd class="home1">
             <div class="home">
                 <div class="slidertopdiv">
 

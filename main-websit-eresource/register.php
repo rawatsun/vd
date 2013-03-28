@@ -1,10 +1,23 @@
  <dt>REGISTER</dt>
 
-        <dd>
+        <dd class="register1">
             <div class=" val">
                 <label class="label1">User Name <input id="reg_user_name" type=
                 "text" /></label> <label class="label1">Password <input id=
-                "reg_password" type="text" /></label> <label class="label1">Confirm
+                "reg_password" type="text" onkeyup="check()"/>
+                <div class="strength">
+    <img src="images/strength.png" class="imgps">
+
+    </div>
+
+   
+    
+            </label> 
+
+
+
+
+                <label class="label1">Confirm
                 Password<input id="reg_confirm_password" type="text" /></label>
                 <label class="label1">First Name <input id="reg_first_name" type=
                 "text" /></label> <label class="label1">Last Name<input id=
