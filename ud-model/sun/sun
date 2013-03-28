@@ -1,55 +1,3 @@
-<?php 
-
-if (isset($_REQUEST['element_0'])){
-$name =  $_REQUEST['element_0'];
-}
-if (isset($_REQUEST['element_1'])){
-$about =  $_REQUEST['element_1'];
-}
-
-
-if (isset($_REQUEST['element_2'])){
-$work =  $_REQUEST['element_2'];
-}
-
-if (isset($_REQUEST['element_3'])){
-$service1 =  $_REQUEST['element_3'];
-}
-
-if (isset($_REQUEST['element_4'])){
-$service2 =  $_REQUEST['element_4'];
-}
-
-if (isset($_REQUEST['element_5'])){
-$service3 =  $_REQUEST['element_5'];
-}
-
-if (isset($_REQUEST['element_6'])){
-$service4 =  $_REQUEST['element_6'];
-}
-if (isset($_REQUEST['element_7'])){
-$email =  $_REQUEST['element_7'];
-}
-if (isset($_REQUEST['element_8'])){
-$website =  $_REQUEST['element_8'];
-}
-
-
-if (isset($_REQUEST['element_9'])){
-$phone =  $_REQUEST['element_9'];
-}
-if (isset($_REQUEST['element_10'])){
-$contact =  $_REQUEST['element_10'];
-}
-
-
-
-
-?>
-<?php
-
-
- $str= <<< test
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>index</title>
@@ -181,7 +129,7 @@ p{
 </head>
 <body>
 <div id="header">
-	<h1><a href="#"> $name </a></h1>
+	<h1><a href="#">bugs life </a></h1>
 </div>
 
 <div id="content">
@@ -189,46 +137,33 @@ p{
 	<div id="colTwo">
 		<div class="post">
 			<h2>About us  </h2>
-			<p>$about </p>
+			<p> </p>
 		</div>
 	
 			<div class="post">
 
 			<h2>Our Services  </h2>
-			<p>  $service1   </p>	
+			<p>     </p>	
 			<hr>
-			<p>  $service2</p>	
-			<hr>
-			
-			<p> $service3 </p>	
+			<p>  </p>	
 			<hr>
 			
-			<p> $service4 </p>	
+			<p>  </p>	
+			<hr>
+			
+			<p>  </p>	
 			<hr>
 		</div>
 			<div class="post">
 			<h2>Email Adddress</h2>
-			<p>$email</p>	
+			<p>http://</p>	
 			
 		</div>
 			<div class="post">
 			<h2>Our Website</h2>
-			<p>$website</p>	
+			<p></p>	
 			
 		</div>
-
-<div class="post">
-			<h2>Phone Number</h2>
-			<p>$phone</p>	
-			
-		</div>
-		<div class="post">
-			<h2>Contact Address </h2>
-			<p>$contact</p>	
-			
-		</div>
-
-
 		</div>
 </div>
 <div id="footer">
@@ -236,30 +171,3 @@ p{
 </div>
 </body>
 </html>
-test;
-
-$db = new PDO('mysql:dbname=visiondart;host=localhost', 'root', 'root');
-$stmt = $db->prepare('INSERT into user_website  VALUES (?,?,?)');
-$user_id = 2 ;
-$template_id =2;
- 
-$stmt->bindParam(1, $user_id,PDO::PARAM_INT);
-
-$stmt->bindParam(2, $str, PDO::PARAM_LOB);
-
-$stmt->bindParam(3, $template_id,PDO::PARAM_INT);
-
-$db->beginTransaction();
-$stmt->execute();
-$db->commit();
-header("Location: site.php");
-
-/*
-$res= mysql_query("select html from new_profile");
-
-while ($row=mysql_fetch_array($res)) {
-	echo $row['html'];
-}
-*/
-  ?>
-
