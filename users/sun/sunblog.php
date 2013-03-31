@@ -1,7 +1,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <script src="../../ud-jquery-lib/jquery-1.8.3.js" type="text/javascript"></script>
+  <script src="../../ud-js/JScript.js" type="text/javascript"></script>
 <head>
 <title>index</title>
 <style>
+table{
+width: 100%;
+background-color: #eee;
+padding: 10px;
+font-style:italic;
+font-family:verdana;
+font-weight:800px;
+font-size:1.2em;
+color:blue;
+}
+tr ,td {
+padding: 10px;
+background-color: white;
+
+font-style:italic;
+font-weight:800px;
+font-size:1.2em;
+color:blue;
+}
+
+img{
+	border: none;
+}
+input[type='button']{
+	border: 1px solid green;
+
+font-style:italic;
+font-weight:800px;
+font-size:1em;
+color:blue;
+}
+input[type='button']:hover{
+	background-color: #eee;
+	cursor: pointer;
+
+
+}
+.ta{
+	width: 100%;
+	font-size: 1em;
+	height: 100px;
+	border: 1px solid gray;
+	background-color: #eee;
+
+font-style:italic;
+font-weight:800px;
+font-size:1.2em;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -15,6 +65,7 @@ h1, h2, h3 {
 	font-weight: normal;
 	font-style: italic;
 	color: black;
+	text-align:left;
 }
 
 h2 { font-size: 34px; }
@@ -43,7 +94,7 @@ strong {
 .post {
 	margin-bottom: 9px;
 	padding: 20px 40px 20px 60px;
-	background: #AFAFAF;
+	background: #0987CD;
 	border: 1px solid pink;
 	border-radius: 8px;
 	box-shadow:1px 10px 60px 10px #D7D7D7;
@@ -58,10 +109,11 @@ strong {
 #header {
 	width: 100%;
 	background-color:black;
-	height: 40px;
+	
 	position:fixed;
 	top:0;
 	left:0;
+	text-align:left;
 	opacity:0.7;-moz-opacity:0.7;
 }
 
@@ -70,7 +122,9 @@ strong {
 	font-size: 90px;	padding: 15 0 5 0px;
 	box-shadow: 0px 10px 5px gray;
 	background-color:black;
-
+	width:100%;
+	text-align:left;
+	float:left;
 }
 
 #header h2 {
@@ -127,43 +181,38 @@ p{
 
 </style>
 </head>
-<body>
+ <body onload="load(2)">
 <div id="header">
-	<h1><a href="#">bugs life </a></h1>
+	<h1><a href="#"> sun blog </a><iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
+scrolling="no" 
+style="float:right;border:none;color:white; width:130px; height:50px;margin:30px"></iframe></h1>
 </div>
 
 <div id="content">
 
 	<div id="colTwo">
 		<div class="post">
-			<h2>About us  </h2>
+			<h2>Blog description  </h2>
 			<p> </p>
 		</div>
 	
 			<div class="post">
 
-			<h2>Our Services  </h2>
 			<p>     </p>	
-			<hr>
-			<p>  </p>	
-			<hr>
 			
-			<p>  </p>	
-			<hr>
+			</div>
+
+
+			<div class="post" style="background-color:white">
+
+			<p>     
+			<div class=add>
+
+				</div>
+
+			</p>	
 			
-			<p>  </p>	
-			<hr>
-		</div>
-			<div class="post">
-			<h2>Email Adddress</h2>
-			<p>http://</p>	
-			
-		</div>
-			<div class="post">
-			<h2>Our Website</h2>
-			<p></p>	
-			
-		</div>
+			</div>
 		</div>
 </div>
 <div id="footer">

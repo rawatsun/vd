@@ -1,3 +1,40 @@
+<?php 
+
+if (isset($_REQUEST['element_2'])){
+$about =  $_REQUEST['element_2'];
+}
+
+if (isset($_REQUEST['element_3'])){
+$para =  $_REQUEST['element_3'];
+}
+
+if (isset($_REQUEST['element_4'])){
+$service1 =  $_REQUEST['element_4'];
+}
+
+if (isset($_REQUEST['element_5'])){
+$service2 =  $_REQUEST['element_5'];
+}
+
+if (isset($_REQUEST['element_6'])){
+$service3 =  $_REQUEST['element_6'];
+}
+
+if (isset($_REQUEST['element_7'])){
+$service4 =  $_REQUEST['element_7'];
+}
+if (isset($_REQUEST['element_8'])){
+$email =  $_REQUEST['element_8'];
+}
+if (isset($_REQUEST['element_9'])){
+$website =  $_REQUEST['element_9'];
+}
+
+$con =  mysql_connect("localhost","root","root");
+mysql_select_db("visiondart");
+
+?>
+<?php $str= <<< test
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>index</title>
@@ -137,31 +174,31 @@ p{
 	<div id="colTwo">
 		<div class="post">
 			<h2>About us  </h2>
-			<p> </p>
+			<p>$about </p>
 		</div>
 	
 			<div class="post">
 
 			<h2>Our Services  </h2>
-			<p>     </p>	
+			<p>  $service1   </p>	
 			<hr>
-			<p>  </p>	
-			<hr>
-			
-			<p>  </p>	
+			<p>  $service1</p>	
 			<hr>
 			
-			<p>  </p>	
+			<p> $service1 </p>	
+			<hr>
+			
+			<p> $service1 </p>	
 			<hr>
 		</div>
 			<div class="post">
 			<h2>Email Adddress</h2>
-			<p>http://</p>	
+			<p>$email</p>	
 			
 		</div>
 			<div class="post">
 			<h2>Our Website</h2>
-			<p></p>	
+			<p>$website</p>	
 			
 		</div>
 		</div>
@@ -171,3 +208,16 @@ p{
 </div>
 </body>
 </html>
+test;
+mysql_query("insert into webview values('$str')");
+//header("Location: site.php");
+
+/*
+$res= mysql_query("select html from new_profile");
+
+while ($row=mysql_fetch_array($res)) {
+	echo $row['html'];
+}
+*/
+  ?>
+

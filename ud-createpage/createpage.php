@@ -5,8 +5,8 @@
 	
 	<div id="form_container">
 	
-		<h1><a>Enter your website content</a></h1>
-		<form id="form_597978" class="appnitro"  method="post" action="">
+		<h1><a></a></h1>
+		<form id="form_59" class="appnitro"  method="post" action="">
 					<div class="form_description">
 			<h2>Enter your website content</h2>
 			<p>The entered data will be displayed into your final website  .</p>

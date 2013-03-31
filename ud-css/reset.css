@@ -40,15 +40,16 @@ table {
     src: url(../fonts/SketchRockwell-Bold.ttf) format(truetype);
 }
 
-body {
+body,html {
     text-align: left;
     margin: 0;
     padding: 0;
     font-family:verdana;
    
+
     color: #FFF;
 
-    background-color: #6B4B5D;
+    background-color: #D7D7D7;
     position: relative;
 }
 
@@ -61,15 +62,19 @@ body {
     padding: 0px;
     height: auto;
     top: 0;
+
     left: 0;
     position: absolute;
 
 }
 .header{
     width: 100%;
-    background-color: black;
+    background-color: #000C41;
     height: 40px;
 
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=8);
 
 }
 
@@ -85,7 +90,8 @@ cratepage{
     margin-left: 0px;
     box-shadow: 5px 5px 5px #888888;
     margin-top: 2px;
-     background-color: #6B4B5D;
+     background-color: #4770B0;
+     color:white;
     float: left;
 
 }
@@ -99,7 +105,7 @@ cratepage{
 .contentpannel {
      height: 100%;
      float: left;
-    width: 65%;
+    width: 62%;
     margin-left: 10px;
     color:red;
 
@@ -110,13 +116,11 @@ cratepage{
 .rightpannel {
      height: 900px;
      float: right;
-    width: 22%;
+    width: 25%;
     margin-left: 0px;
     margin-top: 2px;
 
-    border: 1px solid #9B4B5c;
-     background-color: #6B4B5D;
-
+     background-color: #4770B0;
     }
     .clearfloat{
         clear: both;
@@ -130,7 +134,7 @@ cratepage{
 
     border-top:none; 
     
-     background-color: #6B4B5D;
+     background-color: #335C9C;
     text-decoration:none;
     color:white;
     font-size: 0.6em;
@@ -140,7 +144,7 @@ cratepage{
     width: 95%;
 
     font-size: 0.7em;
-       background-color: #C5A5B7;
+       background-color: #1F4888;
        border-right:1px solid  black;
        border-radius: 4px;
    }
@@ -182,4 +186,8 @@ cratepage{
     font-size: 0.6em;
      width:auto;
     font-size:1em;background-color:black;color:white;font-weight:bold;
+}
+a{
+    color: #ededed;
+
 }

@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="./createpage/view.css" media="all">
-<script type="text/javascript" src="./createpage/view.js"></script>
+<link rel="stylesheet" type="text/css" href="./ud-createpage/view.css" media="all">
+<script type="text/javascript" src="./ud-createpage/view.js"></script>
 
 <body id="main_body" >
 	

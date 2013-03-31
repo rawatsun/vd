@@ -1,67 +1,102 @@
 <?php session_start();
-$about=$name=$work=$service1=$service2=$service3=$service4=$email=$website=$phone=$contact="";
-	include_once('../model/connnection-class.php');
-if (isset($_REQUEST['element_0'])){
-$name =  $_REQUEST['element_0'];
+
+
+$blogdesc=$blogdata="";
+$user_id = $blog_id="";
+
+if (isset($_SESSION['userid'])){
+
+$user_id = $_SESSION['userid'];
+	
 }
+if (isset($_SESSION['blogid'])){
+
+$blog_id = $_SESSION['blogid'];
+	
+}
+
 if (isset($_REQUEST['element_1'])){
-$about =  $_REQUEST['element_1'];
+$blogdesc =  $_REQUEST['element_1'];
 }
-
-
 if (isset($_REQUEST['element_2'])){
-$work =  $_REQUEST['element_2'];
+$blogdata =  $_REQUEST['element_2'];
 }
-
-if (isset($_REQUEST['element_3'])){
-$service1 =  $_REQUEST['element_3'];
-}
-
-if (isset($_REQUEST['element_4'])){
-$service2 =  $_REQUEST['element_4'];
-}
-
-if (isset($_REQUEST['element_5'])){
-$service3 =  $_REQUEST['element_5'];
-}
-
-if (isset($_REQUEST['element_6'])){
-$service4 =  $_REQUEST['element_6'];
-}
-if (isset($_REQUEST['element_7'])){
-$email =  $_REQUEST['element_7'];
-}
-if (isset($_REQUEST['element_8'])){
-$website =  $_REQUEST['element_8'];
-}
-
-
-if (isset($_REQUEST['element_9'])){
-$phone =  $_REQUEST['element_9'];
-}
-if (isset($_REQUEST['element_10'])){
-$contact =  $_REQUEST['element_10'];
-}
-
-
-
-
+$name = $_SESSION['username'];
+$name = $name . " " . "blog";
 ?>
 <?php
+ /*$comment =file_get_contents('../ud-model/comment.txt');
 
+echo $comment;*/
 
- $str= <<< test
+$pdo=new PDO("mysql:host=localhost;dbname=visiondart","root","root") or die("not connected");
+$query = $pdo->prepare("select blog_id from blog_info where  user_id=$user_id limit 1");
+$query->execute();
+$row=$query->fetch();
+$blog_id = $row['blog_id'] ;
+$query = $pdo->prepare("delete  from blog_comments where blog_id=$blog_id");
+$query->execute();
+$str= <<< test
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <script src="../../ud-jquery-lib/jquery-1.8.3.js" type="text/javascript"></script>
+  <script src="../../ud-js/JScript.js" type="text/javascript"></script>
 <head>
 <title>index</title>
 <style>
+table{
+width: 100%;
+background-color: #eee;
+padding: 10px;
+font-style:italic;
+font-family:verdana;
+font-weight:800px;
+font-size:1.2em;
+color:blue;
+}
+tr ,td {
+padding: 10px;
+background-color: white;
+
+font-style:italic;
+font-weight:800px;
+font-size:1.2em;
+color:blue;
+}
+
+img{
+	border: none;
+}
+input[type='button']{
+	border: 1px solid green;
+
+font-style:italic;
+font-weight:800px;
+font-size:1em;
+color:blue;
+}
+input[type='button']:hover{
+	background-color: #eee;
+	cursor: pointer;
+
+
+}
+.ta{
+	width: 100%;
+	font-size: 1em;
+	height: 100px;
+	border: 1px solid gray;
+	background-color: #eee;
+
+font-style:italic;
+font-weight:800px;
+font-size:1.2em;
+}
 body {
 	margin: 0;
 	padding: 0;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: white;
-
 }
 
 h1, h2, h3 {
@@ -69,6 +104,7 @@ h1, h2, h3 {
 	font-weight: normal;
 	font-style: italic;
 	color: black;
+	text-align:left;
 }
 
 h2 { font-size: 34px; }
@@ -81,7 +117,7 @@ p, ol, ul, blockquote {
 a {
 	border-bottom: 1px dotted #707070;
 	text-decoration: none;
-	color: white;
+	color: #BFBFBF;
 }
 
 a:hover {
@@ -97,15 +133,9 @@ strong {
 .post {
 	margin-bottom: 9px;
 	padding: 20px 40px 20px 60px;
-	
-	background: #1E9E9E;
+	background: #0987CD;
 	border: 1px solid pink;
 	border-radius: 8px;
-	font-style:italic;
-font-family:verdana;
-font-weight:800px;
-font-size:1.2em;
-color:blue;
 	box-shadow:1px 10px 60px 10px #D7D7D7;
 }
 
@@ -118,14 +148,12 @@ color:blue;
 #header {
 	width: 100%;
 	background-color:black;
-	height: 40px;
+	
 	position:fixed;
 	top:0;
 	left:0;
-	color:white;
-
-	opacity:0.6;
-	-moz-opacity:0.6;
+	text-align:left;
+	opacity:0.7;-moz-opacity:0.7;
 }
 
 #header h1 {
@@ -133,7 +161,9 @@ color:blue;
 	font-size: 90px;	padding: 15 0 5 0px;
 	box-shadow: 0px 10px 5px gray;
 	background-color:black;
-
+	width:100%;
+	text-align:left;
+	float:left;
 }
 
 #header h2 {
@@ -145,22 +175,22 @@ color:blue;
 #header a {
 	border: none;
 	letter-spacing: -1px;
-	color: white;
+	color: #D676A6;
 }
 
 /* Content */
 
 #content {
-	width: 95%;
-	
+	width: 960px;
+	margin: 10 auto;
 	margin-top:160px;
-	
+	padding: 10px;
 }
 
 
 #colTwo {
 	float: right;
-	width: 95%;
+	width: 960px;
 }
 
 /* Footer */
@@ -190,64 +220,38 @@ p{
 
 </style>
 </head>
-<body>
+ <body onload="load($user_id)">
 <div id="header">
-	<h1><a href="#"> $name </a>  <iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
+	<h1><a href="#"> $name </a><iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
 scrolling="no" 
-style="float:right;border:none;color:white; width:150px; height:90px;margin:40px"></iframe></h1>
-	
- 
+style="float:right;border:none;color:white; width:130px; height:50px;margin:30px"></iframe></h1>
 </div>
 
 <div id="content">
 
 	<div id="colTwo">
 		<div class="post">
-			<h2>About us  </h2>
-			<p>$about </p>
+			<h2>Blog description  </h2>
+			<p>$blogdesc </p>
 		</div>
 	
-	<div class="post">
-			<h2>Work & experience  </h2>
-			<p>$work </p>
-		</div>
 			<div class="post">
 
-			<h2>Our Services  </h2>
-			<p>  $service1   </p>	
-			<hr>
-			<p>  $service2</p>	
-			<hr>
+			<p>  $blogdata   </p>	
 			
-			<p> $service3 </p>	
-			<hr>
-			
-			<p> $service4 </p>	
-			<hr>
-		</div>
-			<div class="post">
-			<h2>Email Adddress</h2>
-			<p>$email</p>	
-			
-		</div>
-			<div class="post">
-			<h2>Our Website</h2>
-			<p>$website</p>	
-			
-		</div>
-
-<div class="post">
-			<h2>Phone Number</h2>
-			<p>$phone</p>	
-			
-		</div>
-		<div class="post">
-			<h2>Contact Address </h2>
-			<p>$contact</p>	
-			
-		</div>
+			</div>
 
 
+			<div class="post" style="background-color:white">
+
+			<p>     
+			<div class=add>
+
+				</div>
+
+			</p>	
+			
+			</div>
 		</div>
 </div>
 <div id="footer">
@@ -261,7 +265,7 @@ $userfolder = $_SESSION['username'];
 
 $dirname=$_SERVER['DOCUMENT_ROOT']."vd/trunk/users/";
 
-$filename=$dirname.$userfolder."/".$userfolder.".php";
+$filename=$dirname.$userfolder."/".$userfolder."blog.php";
 if(!is_dir($dirname.$userfolder))
 {
 
@@ -273,7 +277,7 @@ else
  
 }
 
-echo $dirname ."=" .$filename. "=". $name;
+echo $dirname ."=" .$filename. "=". $blogdesc;
 
 
 
@@ -326,6 +330,9 @@ $res= mysql_query("select html from new_profile");
 while ($row=mysql_fetch_array($res)) {
 	echo $row['html'];
 }
+mysql> select comment_data from blog_comments bc join blog_info bf on bf.blog_id=bc.blog_i
+d where bf.user_id=2;
+
 */
   ?>
 

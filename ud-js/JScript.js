@@ -1,4 +1,5 @@
 ﻿    $(document).ready(function () {
+
     $(".loader").hide();
   
     $(".page1").css({"display":"none"});
@@ -7,7 +8,6 @@
     $(".home1").css({"display":"block"});
            
     home();
-
       
     $(".button-class-div").hide();
     $("#button-class").click(function(){
@@ -80,18 +80,19 @@
 
  function createpage()
      {
-alert();
         $.ajax({
             type: "GET",
             url: 'ud-model/createprocess.php',
-            data: "",
+            data: $('#form_59').serialize(),
             beforeSend: function() {
 
     $(".loader").show();
              },
             success: function(data) {
 
-                alert("Your page has bee created Successfully");
+                alert(data);
+/*
+                alert("Your page has bee created Successfully");*/
                 $(".loader").hide();
             },
 
@@ -186,5 +187,88 @@ function editProfile()
                             alert ("Not Updated");
                             }
    },
+}); 
+}
+
+function createblogpage(){
+     $.ajax({
+            type: "POST",
+            url: 'ud-model/createblog.php',
+            data: $('#form_59709').serialize(),
+
+            beforeSend: function() {
+},   
+            success: function(data) {
+                alert(data);
+               
+
+
+   },
 }) 
 }
+
+
+ function deleteblog(cid,user_id){
+
+    cid=cid;
+   $.ajax({
+            type: "GET",
+            url: '../../ud-model/processdelete.php',
+            data: "cid=" + cid + 
+            "&user_id="+user_id,
+            beforeSend: function() {
+},
+            success: function(data) {
+           
+           $('.add').html(data);
+            },
+            complete: function() {
+},
+            error: function() {}
+        });
+  }
+
+  function insert(user_id){
+    alert();
+
+    value = $(".ta").val();
+   $.ajax({
+            type: "GET",
+            url: '../../ud-model/insertcomment.php',
+            data: "id=" + value + 
+            "&user_id="+user_id,
+            beforeSend: function() {
+
+},
+            success: function(data) {
+        alert(data);
+           $('.add').html(data);
+            },
+            complete: function() {
+
+},
+            error: function() {}
+        });
+  }
+
+  function load(user_id){
+
+$.ajax({
+            type: "GET",
+            url: '../../ud-model/selectcomments.php',
+            data: "id=" + user_id + 
+            "&user_id="+user_id,
+            beforeSend: function() {
+
+},
+            success: function(data) {
+            alert(data);
+           $('.add').html(data);
+            },
+            complete: function() {
+
+},
+            error: function() {}
+        });
+
+  }

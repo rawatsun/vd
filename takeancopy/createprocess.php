@@ -61,7 +61,6 @@ body {
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: white;
-
 }
 
 h1, h2, h3 {
@@ -122,10 +121,8 @@ color:blue;
 	position:fixed;
 	top:0;
 	left:0;
-	color:white;
 
-	opacity:0.6;
-	-moz-opacity:0.6;
+	opacity:0.7;-moz-opacity:0.7;
 }
 
 #header h1 {
@@ -192,11 +189,7 @@ p{
 </head>
 <body>
 <div id="header">
-	<h1><a href="#"> $name </a>  <iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
-scrolling="no" 
-style="float:right;border:none;color:white; width:150px; height:90px;margin:40px"></iframe></h1>
-	
- 
+	<h1><a href="#"> $name </a></h1>
 </div>
 
 <div id="content">

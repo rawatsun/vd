@@ -62,21 +62,63 @@ $dbconnection ->closeConnection();
 
 <body id="main_body" >
 	
+	<style type="text/css">
+	h2{
+
+		margin-top:2px;
+		font-weight: bold;
+		width: 94.9%;
+		padding: 20px;
+		font-size: 1.6em;
+		font-family: verdana;
+		font-style: italic;
+		color: black;
+		background-color: #C3C3C3;
+
+	}
+	span{
+		font-size: 1.3em;
+		font-family: verdana;
+		font-style: italic;
+		color: black;
+		margin: 5px;
+		margin-left: 15px;
+		
+	}
+	.val a{
+		color:blue;
+	}
+	.val{
+
+		font-size: 1.3em;
+		font-family: verdana;
+		font-style: italic;
+		color: black;
+		margin: 5px;
+		margin-right: 45px;
+		
+		float: right;
+
+		color:blue;
+	}
+	</style>
 	<div id="form_container">
 	
 				<div class="form_description-home">
-					<h3></h3>
-			<h2>Your Current Profile </h2>
+						<h1><a></a></h1>
+		<div class="form_description">
+			<h2>your current profile</h2>
+			</div>
 			
-			<br><br><br><span>User Name<?php echo "          ".$user_name;?></span>
-			<br><br><br><span>First Name<?php echo "          ".$firstname;?></span>
-			<br><br><br><span>Last Name<?php echo "          ".$lastname; ?></span>
-			<br><br><br><span>Date Of Birth<?php echo "          ".$dob; ?></span>
-			<br><br><br><span>Address<?php echo "          ".$address;?></span>
-			<br><br><br><span>Phone<?php echo "          ".$phone; ?></span>
-			<br><br><br><span>Country<?php echo "          ".$country; ?></span>
-			<br><br><br><span>Email-ID<?php echo "          ".$email; ?></span>
-			<br><br><br><span>Gender<?php echo "          ".$gender; ?></span>
+			<br><br><br><span>User Name</span><span class="val"><?php echo $_SESSION['username'];?></span>
+			<br><br><br><span>First Name</span><span class="val"><?php echo $firstname;?></span>
+			<br><br><br><span>Last Name</span><span class="val"><?php echo $lastname; ?></span>
+			<br><br><br><span>Date Of Birth</span><span class="val"><?php $dob; ?></span>
+			<br><br><br><span>Address</span><span class="val"><?php echo $address;?></span>
+			<br><br><br><span>Phone</span><span class="val"><?php echo $phone; ?></span>
+			<br><br><br><span>Country</span><span class="val"><?php echo $country; ?></span>
+			<br><br><br><span>Email-ID</span><span class="val"><?php echo $email; ?></span>
+			<br><br><br><span>Gender</span><span class="val"><?php echo $gender; ?></span>
 <br><br>
 <br><br>
 		</div>							

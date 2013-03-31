@@ -6,6 +6,11 @@
 $dbconnection = new DbConnection();
 $dbconnection -> connectToDatabse("localhost","visiondart","root","root");
 
+
+
+
+
+
 if (isset($_REQUEST['codetorun'])){
 
 
@@ -19,7 +24,7 @@ $password  		 = md5($_REQUEST['password']);
 $user_name	     = "'".$user_name."'";
 $password	     = "'".$password."'";
 }
-$arrayofcolumn = array('user_name','password');
+$arrayofcolumn = array('user_name');
 
 $arrayofcolumnwhere = array('user_name' =>$user_name,'password'=>$password);
 $result = $dbconnection -> selectFromTable("user_login",$arrayofcolumn,$arrayofcolumnwhere);
@@ -27,7 +32,18 @@ if ($result == 'You are not logged in'){
 	echo $result;
 } else {
 	echo $_SESSION['username']  = $result;
-	
+	$user_name=$result;
+
+$user_name = "'".$user_name."'"; 
+
+$arrayofcolumn = array('user_id');
+$arrayofcolumnwhere = array('user_name' =>$user_name);
+$user_id = $dbconnection -> selectFromTable("user_login",$arrayofcolumn,$arrayofcolumnwhere);
+$_SESSION['userid']=$user_id;
+$arrayofcolumn = array('blog_id');
+$arrayofcolumnwhere = array('user_id' =>$user_id);
+$blog_id = $dbconnection -> selectFromTable("blog_info",$arrayofcolumn,$arrayofcolumnwhere);
+$_SESSION['blogid']=$blog_id;
 }
 
 }else if ( $_REQUEST['codetorun'] == "registerme" ){

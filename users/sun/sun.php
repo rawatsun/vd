@@ -8,6 +8,7 @@ body {
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: white;
+
 }
 
 h1, h2, h3 {
@@ -27,7 +28,7 @@ p, ol, ul, blockquote {
 a {
 	border-bottom: 1px dotted #707070;
 	text-decoration: none;
-	color: #BFBFBF;
+	color: white;
 }
 
 a:hover {
@@ -43,9 +44,15 @@ strong {
 .post {
 	margin-bottom: 9px;
 	padding: 20px 40px 20px 60px;
-	background: #AFAFAF;
+	
+	background: #1E9E9E;
 	border: 1px solid pink;
 	border-radius: 8px;
+	font-style:italic;
+font-family:verdana;
+font-weight:800px;
+font-size:1.2em;
+color:blue;
 	box-shadow:1px 10px 60px 10px #D7D7D7;
 }
 
@@ -62,7 +69,10 @@ strong {
 	position:fixed;
 	top:0;
 	left:0;
-	opacity:0.7;-moz-opacity:0.7;
+	color:white;
+
+	opacity:0.6;
+	-moz-opacity:0.6;
 }
 
 #header h1 {
@@ -82,22 +92,22 @@ strong {
 #header a {
 	border: none;
 	letter-spacing: -1px;
-	color: #D676A6;
+	color: white;
 }
 
 /* Content */
 
 #content {
-	width: 960px;
-	margin: 10 auto;
+	width: 95%;
+	
 	margin-top:160px;
-	padding: 10px;
+	
 }
 
 
 #colTwo {
 	float: right;
-	width: 960px;
+	width: 95%;
 }
 
 /* Footer */
@@ -129,7 +139,11 @@ p{
 </head>
 <body>
 <div id="header">
-	<h1><a href="#">  </a></h1>
+	<h1><a href="#"> abc.com </a>  <iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
+scrolling="no" 
+style="float:right;border:none;color:white; width:150px; height:90px;margin:40px"></iframe></h1>
+	
+ 
 </div>
 
 <div id="content">
@@ -137,9 +151,13 @@ p{
 	<div id="colTwo">
 		<div class="post">
 			<h2>About us  </h2>
-			<p> </p>
+			<p>a </p>
 		</div>
 	
+	<div class="post">
+			<h2>Work & experience  </h2>
+			<p>a </p>
+		</div>
 			<div class="post">
 
 			<h2>Our Services  </h2>
@@ -161,7 +179,7 @@ p{
 		</div>
 			<div class="post">
 			<h2>Our Website</h2>
-			<p></p>	
+			<p>http://</p>	
 			
 		</div>
 
