@@ -1,46 +1,56 @@
 <?php session_start();
-$about=$name=$work=$service1=$service2=$service3=$service4=$email=$website=$phone=$contact="";
-	include_once('../model/connnection-class.php');
+$about=$name=$code=$work=$service1=$service2=$service3=$service4=$email=$website=$phone=$contact="";
+	include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+	include_once(UD_MODEL_PATH.'/connnection-class.php');
+
 if (isset($_REQUEST['element_0'])){
-$name =  $_REQUEST['element_0'];
+$name =  strip_tags($_REQUEST['element_0']);
 }
+
+if (isset($_SESSION['colorcode'])){
+$code =  $_SESSION['colorcode'];
+}
+else{
+	$code = "gray";
+}
+
 if (isset($_REQUEST['element_1'])){
-$about =  $_REQUEST['element_1'];
+$about =  strip_tags($_REQUEST['element_1']);
 }
 
 
 if (isset($_REQUEST['element_2'])){
-$work =  $_REQUEST['element_2'];
+$work =  strip_tags($_REQUEST['element_2']);
 }
 
 if (isset($_REQUEST['element_3'])){
-$service1 =  $_REQUEST['element_3'];
+$service1 =  strip_tags($_REQUEST['element_3']);
 }
 
 if (isset($_REQUEST['element_4'])){
-$service2 =  $_REQUEST['element_4'];
+$service2 =  strip_tags($_REQUEST['element_4']);
 }
 
 if (isset($_REQUEST['element_5'])){
-$service3 =  $_REQUEST['element_5'];
+$service3 =  strip_tags($_REQUEST['element_5']);
 }
 
 if (isset($_REQUEST['element_6'])){
-$service4 =  $_REQUEST['element_6'];
+$service4 =  strip_tags($_REQUEST['element_6']);
 }
 if (isset($_REQUEST['element_7'])){
-$email =  $_REQUEST['element_7'];
+$email =  strip_tags($_REQUEST['element_7']);
 }
 if (isset($_REQUEST['element_8'])){
-$website =  $_REQUEST['element_8'];
+$website =  strip_tags($_REQUEST['element_8']);
 }
 
 
 if (isset($_REQUEST['element_9'])){
-$phone =  $_REQUEST['element_9'];
+$phone =  strip_tags($_REQUEST['element_9']);
 }
 if (isset($_REQUEST['element_10'])){
-$contact =  $_REQUEST['element_10'];
+$contact =  strip_tags($_REQUEST['element_10']);
 }
 
 
@@ -98,7 +108,7 @@ strong {
 	margin-bottom: 9px;
 	padding: 20px 40px 20px 60px;
 	
-	background: #1E9E9E;
+	background: $code;
 	border: 1px solid pink;
 	border-radius: 8px;
 	font-style:italic;
@@ -259,9 +269,10 @@ test;
 
 $userfolder = $_SESSION['username'];
 
-$dirname=$_SERVER['DOCUMENT_ROOT']."vd/trunk/users/";
+$dirname=DIRECTORY_NAME;
 
 $filename=$dirname.$userfolder."/".$userfolder.".php";
+
 if(!is_dir($dirname.$userfolder))
 {
 
@@ -283,7 +294,7 @@ $fh = fopen($myFile, 'w') or die("can't open file");
 fwrite($fh, $str);
 
 fclose($fh);
-/*
+
 
 $dbconnection = new DbConnection();
 $dbconnection -> connectToDatabse("localhost","visiondart","root","root");
@@ -298,34 +309,28 @@ $arrayofcolumn = array('user_id');
 $arrayofcolumnwhere = array('user_name' =>$user_name);
 $user_id = $dbconnection -> selectFromTable("user_login",$arrayofcolumn,$arrayofcolumnwhere);
 
+
+$arrayofcolumn = array('user_id');
+$arrayofcolumnwhere = array('user_id' =>$user_id);
+$id = $dbconnection -> selectColumn("user_page_link",$arrayofcolumn,$arrayofcolumnwhere);
+
+
 $myFile ="users/".$userfolder."/".$userfolder.".php";
 $myFile = "'". $myFile . "'";
-$arrayofcolumninsert = array('user_id' =>$user_id,'page_link' => $myFile);
-$ans = $dbconnection -> insertIntoTable("user_page_link",$arrayofcolumninsert);*/
 
+    if(trim($id) == "1") //if user exists in user_page_link then update his page information.
+    {
+        $arrayofcolumnupdate = array('page_link' => $myFile);
+        $arrayofcolumnupdatewhere = array('user_id' =>$user_id);
+        $dbconnection->updateToTable("user_page_link",$arrayofcolumnupdate,$arrayofcolumnupdatewhere);
+    }
 
-/*$db = new PDO('mysql:dbname=visiondart;host=localhost', 'root', 'root');
-$stmt = $db->prepare('INSERT into user_website  VALUES (?,?,?)');
-$user_id = 2 ;
-$template_id =2;
- 
-$stmt->bindParam(1, $user_id,PDO::PARAM_INT);
-
-$stmt->bindParam(2, $str, PDO::PARAM_LOB);
-
-$stmt->bindParam(3, $template_id,PDO::PARAM_INT);
-
-$db->beginTransaction();
-$stmt->execute();
-$db->commit();
-*/
-
-/*
-$res= mysql_query("select html from new_profile");
-
-while ($row=mysql_fetch_array($res)) {
-	echo $row['html'];
-}
-*/
+    else if(trim($id) == "2")  //else insert his record.
+    {
+        $arrayofcolumninsert = array('user_id' =>$user_id,'page_link' => $myFile);
+        $ans = $dbconnection -> insertIntoTable("user_page_link",$arrayofcolumninsert);
+    }
+    
+    
   ?>
 

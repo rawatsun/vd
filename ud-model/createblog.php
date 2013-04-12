@@ -1,4 +1,6 @@
 <?php session_start();
+include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+	include_once(UD_MODEL_PATH.'/connnection-class.php');
 
 
 $blogdesc=$blogdata="";
@@ -38,11 +40,34 @@ $query = $pdo->prepare("delete  from blog_comments where blog_id=$blog_id");
 $query->execute();
 $str= <<< test
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <?php 
+  	include_once('$_SERVER[DOCUMENT_ROOT]/vision/trunk/library/common.inc.php');
+
+  include_once('$_SERVER[DOCUMENT_ROOT]/vision/trunk/db-model/sendingrequest.php'); 
+
+  echo 'SITE_ROOT/db-model/sendingrequest.php';
+  ?>
+
   <script src="../../ud-jquery-lib/jquery-1.8.3.js" type="text/javascript"></script>
   <script src="../../ud-js/JScript.js" type="text/javascript"></script>
 <head>
 <title>index</title>
 <style>
+input[type='button']{
+	overflow:visible;
+	padding:8px;
+	border: 1px solid white;
+	border-radius: 4px;
+	width:auto;
+	background-color: #2F5ED1;
+	color: white;
+}
+input[type='button']:hover{
+
+	background-color: #2F5EDf;
+	color: #eee;
+	cursor:pointer;
+}
 table{
 width: 100%;
 background-color: #eee;
@@ -66,20 +91,7 @@ color:blue;
 img{
 	border: none;
 }
-input[type='button']{
-	border: 1px solid green;
 
-font-style:italic;
-font-weight:800px;
-font-size:1em;
-color:blue;
-}
-input[type='button']:hover{
-	background-color: #eee;
-	cursor: pointer;
-
-
-}
 .ta{
 	width: 100%;
 	font-size: 1em;
@@ -220,11 +232,9 @@ p{
 
 </style>
 </head>
- <body onload="load($user_id)">
+ <body onload="loadComment($user_id)">
 <div id="header">
-	<h1><a href="#"> $name </a><iframe  src="http://www.facebook.com/widgets/like.php?href=https://www.facebook.com/Visiondart?skip_nax_wizard=true"
-scrolling="no" 
-style="float:right;border:none;color:white; width:130px; height:50px;margin:30px"></iframe></h1>
+	<h1><a href="#"> $name </a></h1>
 </div>
 
 <div id="content">
@@ -255,7 +265,7 @@ style="float:right;border:none;color:white; width:130px; height:50px;margin:30px
 		</div>
 </div>
 <div id="footer">
-	<p>Copyright &copy; 2013 visiondart. Designed by <a href="http://freecsstemplates.org"><strong>suraj</strong></a></p>
+	<p>Copyright &copy; 2013 visiondart. Designed by <a href="#"><strong>suraj</strong></a></p>
 </div>
 </body>
 </html>
@@ -263,7 +273,7 @@ test;
 
 $userfolder = $_SESSION['username'];
 
-$dirname=$_SERVER['DOCUMENT_ROOT']."vd/trunk/users/";
+$dirname=DIRECTORY_NAME;
 
 $filename=$dirname.$userfolder."/".$userfolder."blog.php";
 if(!is_dir($dirname.$userfolder))
@@ -287,52 +297,64 @@ $fh = fopen($myFile, 'w') or die("can't open file");
 fwrite($fh, $str);
 
 fclose($fh);
-/*
+
 
 $dbconnection = new DbConnection();
 $dbconnection -> connectToDatabse("localhost","visiondart","root","root");
 
 //$use = array();
 
+
 $user_name=$_SESSION['username'];
 
-$user_name = "'".$user_name."'"; 
+$user_name = "'".$user_name."'";
 
 $arrayofcolumn = array('user_id');
 $arrayofcolumnwhere = array('user_name' =>$user_name);
 $user_id = $dbconnection -> selectFromTable("user_login",$arrayofcolumn,$arrayofcolumnwhere);
+$id1 = $dbconnection -> selectColumn("blog_info",$arrayofcolumn,$arrayofcolumnwhere);
 
-$myFile ="users/".$userfolder."/".$userfolder.".php";
+$arrayofcolumn = array('user_id');
+$arrayofcolumnwhere = array('user_id' =>$user_id);
+$id = $dbconnection -> selectColumn("user_page_link",$arrayofcolumn,$arrayofcolumnwhere);
+
+
+$myFile ="users/".$userfolder."/".$userfolder."blog.php";
 $myFile = "'". $myFile . "'";
-$arrayofcolumninsert = array('user_id' =>$user_id,'page_link' => $myFile);
-$ans = $dbconnection -> insertIntoTable("user_page_link",$arrayofcolumninsert);*/
 
 
-/*$db = new PDO('mysql:dbname=visiondart;host=localhost', 'root', 'root');
-$stmt = $db->prepare('INSERT into user_website  VALUES (?,?,?)');
-$user_id = 2 ;
-$template_id =2;
- 
-$stmt->bindParam(1, $user_id,PDO::PARAM_INT);
+if(trim($id) == "1")  //if user exists in user_page_link then update his blog information.
+{
+    $arrayofcolumnupdate = array('blog_page_link' => $myFile);
+    $arrayofcolumnupdatewhere = array('user_id' =>$user_id);
+    $dbconnection->updateToTable("user_page_link",$arrayofcolumnupdate,$arrayofcolumnupdatewhere);
 
-$stmt->bindParam(2, $str, PDO::PARAM_LOB);
-
-$stmt->bindParam(3, $template_id,PDO::PARAM_INT);
-
-$db->beginTransaction();
-$stmt->execute();
-$db->commit();
-*/
-
-/*
-$res= mysql_query("select html from new_profile");
-
-while ($row=mysql_fetch_array($res)) {
-	echo $row['html'];
 }
-mysql> select comment_data from blog_comments bc join blog_info bf on bf.blog_id=bc.blog_i
-d where bf.user_id=2;
 
-*/
+else if(trim($id) == "2")  //else insert his record.
+{
+
+
+    $arrayofcolumninsert = array('user_id' =>$user_id,'blog_page_link' => $myFile);
+    $ans = $dbconnection -> insertIntoTable("user_page_link",$arrayofcolumninsert);
+}
+
+
+if(trim($id1) == "1")  //if user exists in user_page_link then update his blog information.
+{
+    $arrayofcolumnupdate = array('user_id' => $user_id);
+    $arrayofcolumnupdatewhere = array('user_id' =>$user_id);
+    $dbconnection->updateToTable("blog_info",$arrayofcolumnupdate,$arrayofcolumnupdatewhere);
+
+}
+else if(trim($id1) == "2")  //else insert his record.
+{
+
+    $arrayofcolumninsert1 = array('user_id' =>$user_id);
+
+    $ans = $dbconnection -> insertIntoTable("blog_info",$arrayofcolumninsert1);
+}
+
+
   ?>
 

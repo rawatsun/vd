@@ -19,6 +19,7 @@
 
 	function insertIntoTable($_tableName,$arrayofcolumninsert) 
 		{
+			$this->_tableName=$_tableName;
 			$str="";
 			$str2="";
 			$keys="";
@@ -37,6 +38,12 @@
 			//echo 'insert  into  $this->_tableName($str) values($str2)';
 			$this->query=$this->con -> prepare("insert  into  $this->_tableName($str) values($str2)");
 			$this->query->execute();
+			if ($this->query->rowCount()>0){
+				return "1";
+			}
+			else{
+				return "2";
+			}
 
 			}
 		}
@@ -105,7 +112,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 		}
 
 
-		function selectFromTable ( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
+		function selectColumn( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
 		{
 
 			$and="and";
@@ -155,11 +162,89 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 			$this->query->execute();
 			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
 			if ($row=$this->query->fetch()) {
+
+				return  "1";
+
+			}
+			else
+			{
+			return "2";
+							
+			}
+				
+		//	var_dump($this->query->fetch());
+		}
+		
+		
+		
+		
+		
+		function selectFromTable ( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
+		{
+			$this->_tableName = $_tableName;
+			$and="and";
+			$str="";
+			$orderby="";
+			$i=0;
+			 $arrayofcolumn1= $arrayofcolumn;
+			$groupby="";
+
+			if (empty($arrayofcolumn)){
+				$arrayofcolumn = "*" ;
+
+			}
+			else {
+			$arrayofcolumn = implode(",", $arrayofcolumn);
+			$i=count($arrayofcolumn);
+			}
+			if (empty($arrayofcolumnorderby)){
+			$orderby = "" ;
+			}
+			else {
+
+			$orderby = " order by ".implode(",", $arrayofcolumnorderby);
+			$index  = count($arrayofcolumnorderby);
+			$orderby = substr($orderby, 0,-4) ." ". $arrayofcolumnorderby[$index-1] ;
+			
+			}
+			if (empty($arrayofcolumngroupby)){
+			$groupby = "" ;
+			}
+			else {
+
+			$groupby = " group by ".implode(",", $arrayofcolumngroupby);
+			}
+			if (empty($arrayofcolumnwhere)){
+				$str = "" ;
+			}
+			else {
+			foreach ($arrayofcolumnwhere as $key => $value) {
+			$str .=  $key . "=" .  $value . " and ";
+			}
+			$str = " where " . $str ;
+			$str = substr($str, 0,-4);
+			}
+			$tempvar="";
+			$this->_tableName= $_tableName;
+			$this->query=$this->con -> prepare("select $arrayofcolumn from $this->_tableName $str $groupby $orderby ");
+			$this->query->execute();
+			if(trim($this->_tableName)=="login_details") {
+				
+				
+				
+				while($row=$this->query->fetch())
+				{
+					$tempvar .=  $row['login_time'] . ",";
+				}
+				return  $tempvar; 
+			}
+			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
+			if ($row=$this->query->fetch()) {
 				return $row[$arrayofcolumn]; 
 			}
 			else
 			{
-				return  'offline sorry !!';
+				return  "0";
 
 			}
 				
@@ -172,7 +257,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 
 
 
-		function totalComment ($_tableName , $arrayofcolumn="",$arrayofcolumnwhere =""  ,$join)
+		function jointable ($_tableName , $arrayofcolumn="",$arrayofcolumnwhere =""  ,$arrayofcolumngroupby="",$join)
 		{
 			$and="and";
 			$str="";
@@ -220,14 +305,28 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 			$this->query=$this->con -> prepare("select $arrayofcolumn from $this->_tableName $join $str $groupby $orderby ");
 			$this->query->execute();
 			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
+			
+			
+			if (trim($this->_tableName) ==  "blog_comments bc" ){
+	
+				if ($row=$this->query->fetch()) {
+					
+					return $row["blog_id"];
+				}	
+			}
+			else{
+				
+			
 			if ($row=$this->query->fetch()) {
 				return $row[$arrayofcolumn]; 
 			}
 			else
 			{
-				return  "select $arrayofcolumn from $this->_tableName $join $str $groupby $orderby ";
+				return  "offline sorry";
 
-			}}
+			}
+			}
+		}
 
 
 
@@ -295,6 +394,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 			return $newstr;
 		}
 
+		
 				function updateToTable($_tableName,$arrayofcolumntoupdate,$arrayofcolumntoupdatewhere) 
 				{
 					$this->_tableName = $_tableName; 
@@ -331,38 +431,44 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 				}
 		
 
+
+				function deleteFromTable($_tableName,$arrayofcolumntodelete) 
+				{
+					$str="";
+					$str2="";
+					$keys="";
+					$values="";
+					if (empty($arrayofcolumntodelete)){
+					$str = "" ;
+					
+					}
+					else {
+					foreach ($arrayofcolumntodelete as $key => $value) {
+					$str .=  $key . "=" .  $value . " and ";
+					}
+					$str = " where " . $str ;
+					$str = substr($str, 0,-4);
+					$this->query=$this->con -> prepare("delete from  $this->_tableName $str");
+					$this->query->execute();
+					//echo " delete from  $this->_tableName $str";
+					if($this->query->rowCount()>0){
+						return  "1";
+					}
+					else{
+
+						return "2";
+					}
+					}
+				}
+
+
 				function closeConnection(){
 
 
 					$this->con=null;
 				}
 
-				function loadme($user_id){
-					$comment="";
-				$query = $this->con->prepare("select comment_data,bc.comment_id from blog_comments bc join blog_info bf on bf.blog_id=bc.blog_id where bf.user_id=$user_id");
-				$query->execute();
-				$row=$query->fetch();
-				$comment.= "<table>";
-				$comment.= "<tr><td style=background-color:white;color:black;>";
-				$comment.= $row['comment_data'] ."<a class=a1 onclick='deleteblog($row[comment_id],$user_id)' ><img src='../../ud-images/delete.gif'/></a>"  . "<br>";
-				$comment.= "</tr></td>";
-				while ($row=$query->fetch()) {
-				$comment.= "<tr><td style=color:black;>";
-				$comment.= $row['comment_data'] ."<a class=a1 onclick='deleteblog($row[comment_id],$user_id)' ><img src='../../ud-images/delete.gif'/></a>" . "<br>";
-				$comment.= "</tr></td>";
-				}
-				$comment.= "<tr><td style=color:black;>";
-				$comment.= "<textarea class=ta>
-				comment
-				</textarea>";
-				$comment.= "<input type=button onclick='insert($user_id)' value='insert' style=color:black>";
-				$comment.= "</tr></td>";
-				$comment.= "</table>";
-				$comment.="select comment_data,bc.comment_id from blog_comments bc join blog_info bf on bf.blog_id=bc.blog_id where bf.user_id=$user_id";
-				return $comment;
-
-					
-				}
+			
 
 
 	}

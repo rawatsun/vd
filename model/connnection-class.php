@@ -20,7 +20,66 @@
 
 		}
 
-
+		function selectFromTable1( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arrayofcolumnorderby="" ,$arrayofcolumngroupby="" )
+		{
+		
+			$and="and";
+			$str="";
+			$orderby="";
+			$i=0;
+			$arrayofcolumn1= $arrayofcolumn;
+			$groupby="";
+		
+			if (empty($arrayofcolumn)){
+				$arrayofcolumn = "*" ;
+		
+			}
+			else {
+				$arrayofcolumn = implode(",", $arrayofcolumn);
+				$i=count($arrayofcolumn);
+			}
+			if (empty($arrayofcolumnorderby)){
+				$orderby = "" ;
+			}
+			else {
+		
+				$orderby = " order by ".implode(",", $arrayofcolumnorderby);
+				$index  = count($arrayofcolumnorderby);
+				$orderby = substr($orderby, 0,-4) ." ". $arrayofcolumnorderby[$index-1] ;
+					
+			}
+			if (empty($arrayofcolumngroupby)){
+				$groupby = "" ;
+			}
+			else {
+		
+				$groupby = " group by ".implode(",", $arrayofcolumngroupby);
+			}
+			if (empty($arrayofcolumnwhere)){
+				$str = "" ;
+			}
+			else {
+				foreach ($arrayofcolumnwhere as $key => $value) {
+					$str .=  $key . "=" .  $value . " and ";
+				}
+				$str = " where " . $str ;
+				$str = substr($str, 0,-4);
+			}
+			$this->_tableName= $_tableName;
+			$this->query=$this->con -> prepare("select $arrayofcolumn from $this->_tableName $str $groupby $orderby ");
+			$this->query->execute();
+			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
+			if($row=$this->query->fetch()) {
+				return $row[$arrayofcolumn];
+			}
+			else
+			{
+				return  'You are not logged in';
+		
+			}
+		
+			//	var_dump($this->query->fetch());
+		}
 
 	function insertIntoTable($_tableName,$arrayofcolumninsert) 
 		{
@@ -105,7 +164,7 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 			//echo "select $arrayofcolumn from $this->_tableName $str $groupby $orderby ";
 			if ($row=$this->query->fetch()) {
 
-				return  "user already exists";
+				return  "1";
 
 			}
 			else
@@ -179,8 +238,6 @@ function regSelect( $_tableName , $arrayofcolumn="",$arrayofcolumnwhere ="",$arr
 				
 		//	var_dump($this->query->fetch());
 		}
-
-		
 
 				function closeConnection(){
 

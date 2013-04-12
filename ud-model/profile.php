@@ -1,10 +1,10 @@
 <?php session_start();
-	include_once('../ud-model/connnection-class.php');
- 
+	include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+	include_once(UD_MODEL_PATH.'/connnection-class.php');
 
 $dbconnection = new DbConnection();
-$dbconnection -> connectToDatabse("localhost","visiondart","root","root");
 
+$dbconnection -> connectToDatabse(HOST,DB_NAME,UNAME,DB_PASSWORD);
 //$use = array();
 if (isset($_REQUEST['codetorun'])){
 	if ( $_REQUEST['codetorun'] == "1" ){
@@ -57,9 +57,6 @@ $gender = $dbconnection -> selectFromTable("users",$arrayofcolumn,$arrayofcolumn
 $dbconnection ->closeConnection();
  ?>
 
-<link rel="stylesheet" type="text/css" href="./dbhomediv/view.css" media="all">
-<script type="text/javascript" src="dbhomediv/view.js"></script>
-
 <body id="main_body" >
 	
 	<style type="text/css">
@@ -105,9 +102,9 @@ $dbconnection ->closeConnection();
 	<div id="form_container">
 	
 				<div class="form_description-home">
-						<h1><a></a></h1>
+					
 		<div class="form_description">
-			<h2>your current profile</h2>
+			<h2><?php echo PROFILE_CUR; ?></h2>
 			</div>
 			
 			<br><br><br><span>User Name</span><span class="val"><?php echo $_SESSION['username'];?></span>

@@ -1,10 +1,11 @@
 <?php session_start();
-	include_once('../ud-model/connnection-class.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+	include_once(UD_MODEL_PATH.'/connnection-class.php');
  
 
 $dbconnection = new DbConnection();
-$dbconnection -> connectToDatabse("localhost","visiondart","root","root");
 
+$dbconnection -> connectToDatabse(HOST,DB_NAME,UNAME,DB_PASSWORD);
 //$use = array();
 
 $user_name=$_SESSION['username'];
@@ -21,9 +22,12 @@ $arrayofcolumnwhere = array('user_id' =>$user_id);
 $url = $dbconnection -> selectFromTable("user_page_link",$arrayofcolumn,$arrayofcolumnwhere);
 
 
-$arrayofcolumn = array('count(blog_id)');
+$blog_id = "'".$_SESSION['blogid']."'";
+
+
+$arrayofcolumn = array('blog_page_link');
 $arrayofcolumnwhere = array('user_id' =>$user_id);
-$blogs = $dbconnection -> selectFromTable("blog_info",$arrayofcolumn,$arrayofcolumnwhere);
+$blogurl = $dbconnection -> selectFromTable("user_page_link",$arrayofcolumn,$arrayofcolumnwhere);
 
 
 $arrayofcolumn = array('ip_address');
@@ -37,11 +41,11 @@ $template_name = $dbconnection -> selectFromTable("user_template",$arrayofcolumn
 
 //$blog_comments="blog_comments";
 //$blog_info="blog_info";
-
+$arrayofcolumngroupby="";
 $arrayofcolumn = array('count(*)');
 $arrayofcolumnwhere = array('blog_info.user_id' =>$user_id);
 $joinquery = "join blog_info  on blog_info.blog_id = blog_comments.blog_id";
-$total_comment = $dbconnection -> totalComment("blog_comments",$arrayofcolumn,$arrayofcolumnwhere,$joinquery);
+$total_comment = $dbconnection -> jointable("blog_comments",$arrayofcolumn,$arrayofcolumnwhere,$arrayofcolumngroupby,$joinquery);
 
 
 $dbconnection ->closeConnection();
@@ -71,7 +75,7 @@ $dbconnection ->closeConnection();
 		font-weight: bold;
 		width: 94.9%;
 		padding: 20px;
-		font-size: 1.6em;
+		font-size: 1.4em;
 		font-family: verdana;
 		font-style: italic;
 		color: black;
@@ -100,14 +104,13 @@ $dbconnection ->closeConnection();
 	
 				<div class="form_description-home">
 
-		<h1><a></a></h1>
 		<div class="form_description">
-			<h2>your current website information</h2>
+			<h2><?php echo HOME_DATA; ?></h2>
 			</div>
 			<br><br><br><span>User Name</span><span class="val"><?php echo $_SESSION['username'];?></span>
 			<br><br><br><span>User id</span><span class="val"><?php echo $user_id;?></span>
 			<br><br><br><span>Page Url</span><span class="val"><a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
-			<br><br><br><span>Total Blogs</span><span class="val"><?php echo $blogs;?></span>
+			<br><br><br><span>Blogs Url</span><span class="val"><a href="<?php echo $blogurl;?>"><?php echo $blogurl; ?></a></span>
 			<br><br><br><span>Ip Address</span><span class="val"><?php echo $ip; ?></span>
 			<br><br><br><span>Selected Template</span><span class="val"><?php echo $template_name; ?></span>
 			<br><br><br><span>Total Comments</span><span class="val"><?php echo $total_comment; ?></span>

@@ -1,4 +1,8 @@
+<?php 
+	include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+?>
 <?php session_start();
+
 if (isset($_GET['cid'])){
 
 $values = $_GET['cid'];
@@ -56,10 +60,10 @@ $comment.= "<tr><td style=color:black;>";
 
 
 	$comment.= "<textarea class=ta>
-comment
+
 </textarea>";
 
-$comment.= "<input type=button onclick='insert()' value='insert' style=color:black>";
+$comment.= "<input type=button onclick='insert()' value='comment' ";
 $comment.= "</tr></td>";
 $comment.= "</table>";
  echo $comment;
