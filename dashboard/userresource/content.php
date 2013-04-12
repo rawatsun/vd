@@ -18,19 +18,26 @@
 
 <div class="editprofile1">
 
-<?php include_once('./ud-edit/createpage.php');  ?>
+
+</div>
+
+ <div class="changepassword1">
+
 </div>
 
 <div class="deleteprofile1">
-
 </div>
+
 
 <div class="choosetemplate1">
 
 </div>
 
+<div class="comment1">
+
+</div>
+
 <div class="page1">
-<?php include_once('./ud-createpage/createpage.php');  ?>
 </div>
 
 <div class="feedbacks1">
@@ -41,9 +48,11 @@
 
 </div>
 
-<div class="mailsetting1">
-
+<div class="mailsettings">
 </div>
+
+
+<div class="sendmail1"></div>
 <div class="premium1">
 
 </div>
@@ -54,13 +63,22 @@
 
 <div class="notification">
 
+<div class="notification-a"><div class="anchor-noti"><a href="javascript:readnotification()" class="a1" onclick="readnotification()">
+
+
+</div>
+<img src="ud-images/notification1.jpg" height="100" width="100"/>
+</a>
+
+</div> 
+
 </div>
 
-<div class="use donation button">
+<div class="donation1">
 </div>
 
-<div class="share">
-
+<div class="share1">
+<?php include_once('./ud-edit/share.php'); ?>
 </div>
 
 </div>

@@ -135,22 +135,9 @@ public function  donate(){
 
 public function  comment(){
    
-   loadView("./ud-edit/comment.php");    
+   loadView("./ud-model/comment.php");    
    
    }
-
-public function  commentinComment(){
-   
-   loadView("./ud-model/insertcommentincomments.php");    
-   
-   }
-
-public function  deleteComment(){
-   
-   loadView("./ud-model/processdeleteincomment.php");    
-   
-   }
-
 
 public function  viewuser(){
    

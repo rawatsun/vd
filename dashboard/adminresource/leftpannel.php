@@ -1,35 +1,17 @@
+ <?php 
+    include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+
+   include_once(ADMIN_REQUEST_TO_DB_CONTROLLER);
+?>
  <div class="leftpannel">
 
                 <div class="links">
 
-                        <a href="#" class="dashboard-button-class"  >DASH BOARD </a>
-
-                        <a href="#" class="button-class" >Home </a>
-                        <a href="#" class="button-class" id="button-class" onclick="disp();">Profile</a>
-                        <div class="button-class-div">
-                    <a href="#" class="button-class1" id="button-class1" style="background-color:gray; color:white" >Profile Management </a>
-                    
-                        <a href="#" class="button-class1" id="button-class1"id="button-class1">New Profile</a>
-                        <a href="#" class="button-class1" id="button-class1" >Edit Profile</a>  
-                        <a href="#" class="button-class1" id="button-class1">Delete Profile</a>
-                        <a href="#" class="button-class1" id="button-class1">Update Profile</a>  
-
-                        </div>
-
-                        <a href="#" class="button-class" >Blogs</a>
-                        <a href="#" class="button-class" >Create Page</a>
-                        <a href="#" class="button-class" >Choose templates</a>
-                        <a href="#" class="button-class" >Comments </a>
-                        <a href="#" class="button-class" >Feedbacks  </a>
-                        <a href="#" class="button-class" >Stats  </a>
-                        <a href="#" class="button-class" >Mail Setting</a>
-                        <a href="#" class="button-class" >Send Mail </a>
-                        <a href="#" class="button-class" >Themes</a>
-                        <a href="#" class="button-class" >Premium Member</a>
-                        <a href="#" class="button-class" >Notifications</a>
-                        <a href="#" class="button-class" >Share</a>         
-                        <a href="#" class="button-class" >Use Donation button</a>
-
-
-                       </div>
-        </div>
+                        <a href="#" class="dashboard-button-class"  ><?php echo DASHBOARD; ?></a>
+                        <a href="#" class="button-class deleteuser" onclick="viewAdminDelete()"><?php echo DELETE_USER; ?></a>
+                        <a href="#" class="button-class adminpassword" onclick="viewadminPassword()"><?php echo CHANGE_PASSWORD1; ?></a>
+                        <a href="#" class="button-class adminstats" onclick="viewAdminStats()"><?php echo STATS; ?></a>
+                        <a href="#" class="button-class adminmail" onclick="viewadminMailSettings()"><?php echo MAIL_SETTINGS; ?></a>
+                        <a href="#" class="button-class adminsend" onclick="viewadminSendMail()"><?php echo SEND_MAIL; ?></a>
+                </div>
+</div>
