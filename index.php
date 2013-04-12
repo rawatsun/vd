@@ -1,5 +1,6 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/vd/trunk/library/common.inc.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+
 
 if(isset($_GET['controller']) && !empty($_GET['controller'])){
       $controller =$_GET['controller'];
@@ -16,12 +17,12 @@ if(isset($_GET['function']) && !empty($_GET['function'])){
 $controller=strtolower($controller);
 
 $fn = SITE_ROOT.'controller/'.$controller . '.php';
-
+/* die($fn  . $controller .$function ); */
 if(file_exists($fn)){
       require_once($fn);
       $controllerClass=$controller.'Controller';
       if(!method_exists($controllerClass,$function)){
-          header("Location: 404/error.html");
+          header("Location: 404/error.php");
       }
 
       $obj=new $controllerClass;
