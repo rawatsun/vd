@@ -1,41 +1,31 @@
- <dt>SERVICES</dt>
+ <?php 
+    include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+?>
+ <dt><?php echo SERVICES; ?></dt>
 
         <dd class="services1"> <div class="para"></div>
 
-            <div class="serve">
+           <div  class="main-container-parent-move">
 
-               <div class="service">
-                <img alt="" height="250" src=
-                    "images/c1.png" />
 
-               </div>
+        <div  class="main-container-move">
+          
+          <div class="inner-container-move">
+            <img src="images/c1.jpg">
+            <img src="images/c2.png">
+            <img src="images/c3.gif">
+            <img src="images/c4.jpg">
+            <img src="images/content.jpg">
+            <img src="images/c6.gif">
+          
+          </div>
 
-               <div class="service">
-                 <img alt="" height="250" src=
-                    "images/c2.png" />
-               </div>
+        <input type="button" value="&#60;"  class="back">
 
-               <div class="service">
-                 <img alt="" height="250" src=
-                    "images/c3.gif" />
-               </div>
+        <input type="button" value="&#62;" class="next">
+        </div>
 
-               <div class="service">
-                <img alt="" height="250" src=
-                    "images/c4.jpg" />
-
-               </div>
-
-               <div class="service">
-                 <img alt="" height="250" src=
-                    "images/c5.jpg" />
-               </div>
-
-               <div class="service">
-                 <img alt="" height="250" src=
-                    "images/c6.gif"  />
-               </div>
-            </div>
+        </div>
 
                 <div class="para"></div>
 

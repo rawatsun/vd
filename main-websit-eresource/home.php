@@ -1,13 +1,13 @@
-<dt>HOME</dt>
+<?php 
+    include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+?>
+<dt><?php echo HOME; ?></dt>
 
         <dd class="home1">
             <div class="home">
                 <div class="slidertopdiv">
 
-                <p style="color:white;font-size:1.6em;font-weight: bolder;">Our software creates websites where stories are created and
-                voted on by members, not website editors. Use Pligg content
-                management system to start your own social publishing community
-                in minutes.</p>
+                <p style="color:white;font-size:1.6em;font-weight: bolder;"><?php echo HOME_TEXT; ?></p>
                 </div>
                 <div id="slidercontainer1">
                     <div id="slider1"><img alt="" height="450" src=
@@ -22,10 +22,7 @@
 
                 <div class="para"></div>
 
-                <p class="homepara">Our software creates websites where stories are created and
-                voted on by members, not website editors. Use Pligg content
-                management system to start your own social publishing community
-                in minutes.</p>
+                <p class="homepara"><?php echo HOME_TEXT; ?></p>
 
                 <div class="para"></div>
             </div>

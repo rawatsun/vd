@@ -1,14 +1,17 @@
-<dt>LOGIN</dt>
+<?php 
+    include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
+?>
+<dt><?php echo LOGIN; ?></dt>
 
    <dd class="login1">
         <div class=" val">
-            <label class="label1">UserName <input id="user_name" name="user_name" type=
-            "text" /></label>
+            <label class="label1"><?php echo USER_NAME; ?><input id="user_name" name="user_name" type="text" /></label>
+
                     
-                    <label class="label1">Password <input class="loginc"
-                     id="password" name="password" type="text"  />
-                      
-                    </label>
+                    <label class="label1"><?php echo PASSWORD; ?><input class="loginc" id="password" name="password" type="password"   />
+                      </label>
+                      <span class ="log_data"> </span>
+
                     <label class="label1" style="color:red"></label>
                                 
               <input id="b1"  type="button" value=
