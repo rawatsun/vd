@@ -1,6 +1,3 @@
-<?php 
-	include_once($_SERVER['DOCUMENT_ROOT'].'/vision/trunk/library/common.inc.php');
-?>
 <html>
 <head>
 	<title></title>
@@ -42,7 +39,7 @@
 </style><body>
 <div class"err-div">
 <img class="err" src="error404.jpg">
-<a class="drop" href="../index.php"><?php echo DROP_ME_HOME; ?></a>
+<a class="drop" href="../index.php">drop me home</a>
 </div>
 </body>
 </html>
